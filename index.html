@@ -17,6 +17,7 @@
         {{  makeLabel(item.label, lang) }}
     <span ng-if="item.details && isMinimized(minimized,depth) && depth > 1" class="w3-card w3-margin">&hellip;</span>
     </div>
+    <div ng-if="item.url && !isMinimized(minimized,depth)"> URL : <a ng-href="{{item.url}}">{{ item.url }}</a></div>
     <div ng-if="item.details && !isMinimized(minimized,depth)" ng-class="setClass('details', depth)">
         <div ng-repeat="item in item.details" ng-include="'itemList'" ng-init="depth=depth+1; minimized = true"></li>
     </div>
