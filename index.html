@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="cv" ng-controller="cv" ng-init="lang='en'">
+    <head>
+        <meta charset="UTF-8">
+        <title>CV</title>
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> 
+
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.5/angular.min.js"></script>
+        <script src="cv.js"></script>
+        <script src="cv-list.js"></script>
+
+        <script type="text/ng-template" id="itemList">
+<div ng-class="setClass('container', depth)">
+    <div ng-class="setClass('label', depth)" ng-click="minimized = !minimized">
+        <strong ng-bind="item.start_date" ng-if="item.start_date"></strong>
+        <strong ng-bind="'&mdash; ' + item.end_date" ng-if="item.end_date && item.end_date !== item.start_date"></strong>
+        {{  item.label[lang] }}
+    <span ng-if="item.details && isMinimized(minimized,depth) && depth > 1" class="w3-card w3-margin">&hellip;</span>
+    </div>
+    <div ng-if="item.details && !isMinimized(minimized,depth)" ng-class="setClass('details', depth)">
+        <div ng-repeat="item in item.details" ng-include="'itemList'" ng-init="depth=depth+1; minimized = true"></li>
+    </div>
+</div>
+        </script>
+    </head>
+
+    <body>
+        <div class="w3-center w3-container w3-green w3-display-container">
+            <p>
+                <select ng-model="lang" ng-options="l for l in cv.lang" class="w3-display-topright"></select>
+                <div class="w3-center w3-xxxlarge">
+                    <img class="w3-circle" width="100px" src="photo.jpg" /></br>
+                    Christophe Riolo </br>
+                    <span class="w3-large">Looking for a job as a software engineer or as a teacher.</span>
+                </div>
+            </p>
+        </div>
+        <div ng-include="'itemList'" ng-controller="cv-list" ng-init="minimized=false"></div>
+    </body>
+</html>
+
