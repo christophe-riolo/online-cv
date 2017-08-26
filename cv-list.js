@@ -23,4 +23,11 @@ app.controller("cv-list", function($scope) {
     $scope.isMinimized = function (minimized,depth) {
         return minimized && depth > 0 && depth < 3;
     };
+    $scope.makeLabel = function (label,lang) {
+      switch (typeof(label)) {
+        case "string": return label;
+        case "object": return label[lang];
+        default: return "";
+      };
+    }
 });

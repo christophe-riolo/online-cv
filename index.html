@@ -14,7 +14,7 @@
     <div ng-class="setClass('label', depth)" ng-click="minimized = !minimized">
         <strong ng-bind="item.start_date" ng-if="item.start_date"></strong>
         <strong ng-bind="'&mdash; ' + item.end_date" ng-if="item.end_date && item.end_date !== item.start_date"></strong>
-        {{  item.label[lang] }}
+        {{  makeLabel(item.label, lang) }}
     <span ng-if="item.details && isMinimized(minimized,depth) && depth > 1" class="w3-card w3-margin">&hellip;</span>
     </div>
     <div ng-if="item.details && !isMinimized(minimized,depth)" ng-class="setClass('details', depth)">
@@ -31,7 +31,7 @@
                 <div class="w3-center w3-xxxlarge">
                     <img class="w3-circle" width="100px" src="photo.jpg" /></br>
                     Christophe Riolo </br>
-                    <span class="w3-large">Looking for a job as a software engineer or as a teacher.</span>
+                    <span class="w3-large">{{ description[lang] }}</span>
                 </div>
             </p>
         </div>
