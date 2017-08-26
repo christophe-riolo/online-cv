@@ -4,7 +4,7 @@ online-cv
 Simple CV webpage, using a JSON format in `cv.js` for multilingual CV.
 
 ## Format
-One level of the CV (ont `item`) is made of :
+One level of the CV (one `item`) is made of :
 - A label (compulsory):
  - An object of attributes : `'language' : 'text in language'`
 - `details` : a list of `item`s
