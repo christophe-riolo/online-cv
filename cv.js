@@ -6,7 +6,7 @@ angular.module("cv", []).controller("cv", function($scope) {
       fr: "En recherche d'un travail de programmeur ou d'enseignant."
     },
     details : [
-      {label: "E-mail : ", url: {label: "christophe.riolo@ens-cachan.org", target: "mailto:christophe.riolo@ens-cachan.org"} },
+      {url: {before: "E-mail : ", label: "christophe.riolo@ens-cachan.org", target: "mailto:christophe.riolo@ens-cachan.org"} },
       {label : {en: "Phone: (+358)41-366 3211", fr: "Téléphone : (+358)41-366 3211"}}
     ]
   };

@@ -11,19 +11,18 @@
         <script src="cv-description.js"></script>
 
         <script type="text/ng-template" id="itemList">
-<div ng-class="setClass('container', depth)" ng-click="minimized = !minimized">
-    <span ng-class="setClass('label', depth)">
+<div ng-class="setClass('container', depth)">
+    <div ng-class="setClass('label', depth)" ng-click="minimized = !minimized">
         <strong ng-bind="item.start_date" ng-if="item.start_date"></strong>
         <strong ng-bind="'&mdash; ' + item.end_date" ng-if="item.end_date && item.end_date !== item.start_date"></strong>
         <span ng-if="item.label">{{makeLabel(item.label, lang) }}</span>
     <span ng-if="item.details && isMinimized(minimized,depth) && depth > 1" class="w3-card w3-margin">&hellip;</span>
-    </span>
+    </div>
     <span ng-if="item.url && !item.url.label">
-      URL :
-        <a ng-href="{{item.url.target}}"> {{ item.url.target }}</a>
+        {{ item.url.before ? item.url.before : "" }}<a ng-href="{{item.url.target}}"> {{ item.url.target }}</a>
     </span>
     <span ng-if="item.url && item.url.label">
-        <a ng-href="{{item.url.target}}"> {{ makeLabel(item.url.label) }}</a>
+        {{ item.url.before ? item.url.before : "" }} <a ng-href="{{item.url.target}}"> {{ makeLabel(item.url.label) }}</a>
     </span>
     <div ng-if="item.details && !isMinimized(minimized,depth)" ng-class="setClass('details', depth)">
         <div ng-repeat="item in item.details" ng-include="'itemList'" ng-init="depth=depth+1; minimized = true"></li>
