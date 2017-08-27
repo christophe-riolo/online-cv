@@ -8,16 +8,23 @@
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.5/angular.min.js"></script>
         <script src="cv.js"></script>
         <script src="cv-list.js"></script>
+        <script src="cv-description.js"></script>
 
         <script type="text/ng-template" id="itemList">
-<div ng-class="setClass('container', depth)">
-    <div ng-class="setClass('label', depth)" ng-click="minimized = !minimized">
+<div ng-class="setClass('container', depth)" ng-click="minimized = !minimized">
+    <span ng-class="setClass('label', depth)">
         <strong ng-bind="item.start_date" ng-if="item.start_date"></strong>
         <strong ng-bind="'&mdash; ' + item.end_date" ng-if="item.end_date && item.end_date !== item.start_date"></strong>
-        {{  makeLabel(item.label, lang) }}
+        <span ng-if="item.label">{{makeLabel(item.label, lang) }}</span>
     <span ng-if="item.details && isMinimized(minimized,depth) && depth > 1" class="w3-card w3-margin">&hellip;</span>
-    </div>
-    <div ng-if="item.url && !isMinimized(minimized,depth)"> URL : <a ng-href="{{item.url}}">{{ item.url }}</a></div>
+    </span>
+    <span ng-if="item.url && !item.url.label">
+      URL :
+        <a ng-href="{{item.url.target}}"> {{ item.url.target }}</a>
+    </span>
+    <span ng-if="item.url && item.url.label">
+        <a ng-href="{{item.url.target}}"> {{ makeLabel(item.url.label) }}</a>
+    </span>
     <div ng-if="item.details && !isMinimized(minimized,depth)" ng-class="setClass('details', depth)">
         <div ng-repeat="item in item.details" ng-include="'itemList'" ng-init="depth=depth+1; minimized = true"></li>
     </div>
@@ -32,7 +39,7 @@
                 <div class="w3-center w3-xxxlarge">
                     <img class="w3-circle" width="100px" src="photo.jpg" /></br>
                     Christophe Riolo </br>
-                    <span class="w3-large">{{ description[lang] }}</span>
+                    <span class="w3-large" ng-controller="cv-description" ng-include="'itemList'" ng-init="minimized=false"></span>
                 </div>
             </p>
         </div>

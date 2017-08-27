@@ -1,12 +1,48 @@
 angular.module("cv", []).controller("cv", function($scope) {
+  // Description of the author
   $scope.description = {
-    en: "Looking for a job as a software engineer or as a teacher.",
-    fr: "En recherche d'un travail de programmeur ou d'enseignant."
+    label : {
+      en: "Looking for a job as a software engineer or as a teacher.",
+      fr: "En recherche d'un travail de programmeur ou d'enseignant."
+    },
+    details : [
+      {label: "E-mail : ", url: {label: "christophe.riolo@ens-cachan.org", target: "mailto:christophe.riolo@ens-cachan.org"} },
+      {label : {en: "Phone: (+358)41-366 3211", fr: "Téléphone : (+358)41-366 3211"}}
+    ]
   };
 
+  // Meta information
+  $scope.meta = {
+    version: "1.2",
+    author: "Christophe Riolo"
+  }
+
+  // The following are for the CV itself
+
+  // To keep track of how deeply nested we are
+  $scope.depth = 0;
+
+  // To produce a label depending on the language or not
+  $scope.makeLabel = function (label,lang) {
+    switch (typeof(label)) {
+      case "string": return label;
+      case "object": return label[lang];
+      default: return "";
+    };
+  }
+
+  // To produce an anchor text depending on presence of label or not
+  $scope.makeUrlText = function(url, lang) {
+    if (url.label) {
+      return makeLabel(url.label, lang);
+    } else {
+      return url.target;
+    };
+  };
+
+  // The actual CV values
   $scope.cv = {
     label: {en : "Resume", fr:"CV"},
-    version: "1.0",
     lang:["en","fr"],
     details: [
       {
@@ -180,43 +216,49 @@ angular.module("cv", []).controller("cv", function($scope) {
         details:
         [
           {label: "Archsim",
-            url: "https://github.com/christophe-riolo/Archsim",
-            details: [{label :
+            details: [
+              {url: {target :"https://github.com/christophe-riolo/Archsim"}},
+              {label :
               {en: "A simulator for a massively distributed 3D architecture (numerous processors linked through a network to numerous memories). Used to test different memory call routing algorithms.",
                 fr: "Un simulateur d'architecture 3D massivement parallèle (nombreux processeurs et nombreuses mémoires reliées par un réseau). Utilisé pour tester différents algorithmes de routage de requêtes mémoires."
               }}]
           },
           {label: "Kimble",
-            url: "https://github.com/christophe-riolo/kimble",
-            details: [{label: {
+            details: [
+              {url: {target: "https://github.com/christophe-riolo/kimble"}},
+              {label: {
               en: "A Kimble (Trouble) game simulator made in around 7h when applying to one job.",
               fr: "Un jeu de Trouble programmé en C++ en 7h environ pour postuler à un travail."
             }}]
           },
           {label: "Forgetit",
-            url: "https://github.com/christophe-riolo/forgetit",
-            details: [{label: {
+            details: [
+              {url: {target : "https://github.com/christophe-riolo/forgetit"}},
+              {label: {
               en: "A web app of todo list based on Getting Things Done (GTD), with todo.txt syntax. Personal project to get back into web coding &mdash; and access my own todo list.",
               fr: "Un application web de todo list basée sur la syntaxe todo.txt pour Getting Thigs Done (GTD). Projet personnel pour reprendre le codage web et accéder à ma todo list."
             }}]
           },
           {label: "OptiGear",
-            url: "https://github.com/christophe-riolo/OptiGear",
-            details: [{label: {
+            details: [
+              {url: {target : "https://github.com/christophe-riolo/OptiGear"}},
+              {label: {
               en: "A Final Fantasy XIV gear optimization tool, abandonned during development as game updates rendered it obsolete.",
               fr: "Un outil d'optimisation d'équipement pour Final Fantasy XIV, rendu obsolète par des mise à jour du jeu, et abandonné en cours de développement."
             }}]
           },
           {label: "online-cv",
-            url: "https://github.com/christophe-riolo/online-cv",
-            details: [{label: {
+            details: [
+              {url: {target: "https://github.com/christophe-riolo/online-cv"}},
+              {label: {
               en: "The current page's code.",
               fr: "Le code de cette page."
             }}]
           },
           {label: "buddhist-well-being-pyqt5",
-            url: "https://github.com/christophe-riolo/buddhist-well-being-pyqt5",
-            details: [{label: {
+            details: [
+              {url: {target: "https://github.com/christophe-riolo/buddhist-well-being-pyqt5"}},
+              {label: {
               en: "Buddhist way of life diary application ; abandoned due to lack of responses from owner of the project.",
               fr: "Application de journal personnel bouddhiste ; abandonné par manque de réaction du propriétaire du projet."
             }}]
@@ -226,3 +268,5 @@ angular.module("cv", []).controller("cv", function($scope) {
     ]
   }
 });
+
+// vim: sw=2
