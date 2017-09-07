@@ -259,8 +259,16 @@ angular.module("cv", []).controller("cv", function($scope) {
             details: [
               {url: {target: "https://github.com/christophe-riolo/buddhist-well-being-pyqt5"}},
               {label: {
-              en: "Buddhist way of life diary application ; abandoned due to lack of responses from owner of the project.",
-              fr: "Application de journal personnel bouddhiste ; abandonné par manque de réaction du propriétaire du projet."
+              en: "Buddhist way of life diary application ; abandoned by owner for a new similar project.",
+              fr: "Application de journal personnel bouddhiste ; abandonné par le propriétaire pour se consacerr à un projet similaire."
+            }}]
+          },
+          {label: "pythot",
+            details [
+              {url: {target: "https://github.com/christophe-riolo/pythot"}},
+              {label: {
+              en: "Program for education, to learn solving of first degree linear equations.",
+              fr: "Programme pour apprendre à résoudre les équations linéaires du premier degré."
             }}]
           }
         ]
