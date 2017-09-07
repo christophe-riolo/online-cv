@@ -264,7 +264,7 @@ angular.module("cv", []).controller("cv", function($scope) {
             }}]
           },
           {label: "pythot",
-            details [
+            details: [
               {url: {target: "https://github.com/christophe-riolo/pythot"}},
               {label: {
               en: "Program for education, to learn solving of first degree linear equations.",
