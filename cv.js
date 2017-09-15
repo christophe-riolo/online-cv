@@ -169,7 +169,8 @@ angular.module("cv", []).controller("cv", function($scope) {
               { label: "OCaml"},
               { label: "Javascript"},
               { label: "HTML"},
-              { label: "CSS"}
+              { label: "CSS"},
+              { label: "Qt (PyQt)"}
             ]
           },
           {label : { en : "Other", fr : "Autres" },
