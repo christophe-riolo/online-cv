@@ -178,6 +178,7 @@ angular.module("cv", []).controller("cv", function($scope) {
             [
               { label: "Linux"},
               { label: "LaTeX"},
+              { label: "Google Cloud Platform"},
             ]
           }
         ]
